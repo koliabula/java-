@@ -30,15 +30,15 @@ public class DZ5_Bulla {
         Random rndm = new Random();
 
         for (int i = 0; i < 997; i++) {
-            tMap.put(rndm.nextInt(10000), "Black");
-            hashMap.put(rndm.nextInt(10000), "Black");
+            tMap.putIfAbsent(rndm.nextInt(1000), "Black");
+            hashMap.putIfAbsent(rndm.nextInt(1000), "Black");
         }
 
         while (tMap.size() < 1000 ){
-            tMap.put(rndm.nextInt(10000), "Black");
+            tMap.putIfAbsent(rndm.nextInt(1000), "Black");
         }
         while (hashMap.size() < 1000 ){
-            hashMap.put(rndm.nextInt(10000), "Black");
+            hashMap.putIfAbsent(rndm.nextInt(1000), "Black");
         }
 
         long begin1 = System.currentTimeMillis();
@@ -60,7 +60,19 @@ public class DZ5_Bulla {
         //____________СЛУЧАЙНЫЙ ПЕРЕБОР__________________//
         // Немного не понял как его перебирать(((((
 
+        long begin11 = System.currentTimeMillis();
+        for (int i = 0; i < 1000; i++) {
+            hashMap.get(rndm.nextInt(999));
+        }
+        long end11 = System.currentTimeMillis();
+        System.out.println("Время HashMap случ -->" + (end11 - begin11));
 
+        long begin22 = System.currentTimeMillis();
+        for (int i = 0; i < 1000; i++) {
+            tMap.get(rndm.nextInt(999));
+        }
+        long end22 = System.currentTimeMillis();
+        System.out.println("Время TreeMap случ -->" + (end22 - begin22));
     }
     
 }
